@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getHomePage, getAboutPage, getCoursesPage, getContactPage, getDashboardPage, getLoginPage, getRegisterPage } = require("../controllers/pagecontroller");
+const { getHomePage, getAboutPage, getCoursesPage, getContactPage, getDashboardPage, getLoginPage, getRegisterPage } = require("../controllers/pageController");
 
 router.get("/", getHomePage);
 router.get("/about", getAboutPage);

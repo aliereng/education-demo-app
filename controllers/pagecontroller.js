@@ -1,29 +1,39 @@
 const getHomePage = (req, res) => {
 
-    res.status(200).render('index');
+    res.status(200).render('index', {
+        page_name: 'index'
+    });
 
 }
 
 const getAboutPage = (req, res) => {
 
-    res.status(200).render('about');
+    res.status(200).render('about', {
+        page_name: 'about'
+    });
 
 }
 
 const getCoursesPage = (req, res) => {
 
-    res.status(200).render('courses');
+    res.status(200).render('courses', {
+        page_name: 'courses'
+    });
 
 }
 
 const getContactPage = (req, res) => {
 
-    res.status(200).render('contact');
+    res.status(200).render('contact', {
+        page_name: 'contact'
+    });
 
 }
 const getDashboardPage = (req, res) => {
 
-    res.status(200).render('dashboard');
+    res.status(200).render('dashboard', {
+        page_name: 'dashboard'
+    });
 
 }
 const getLoginPage = (req, res) => {
