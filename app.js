@@ -22,7 +22,7 @@ app.use(
     secret: 'alierengonulcelen',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://aeggea:ali392630EREN@cluster0.o1smq.mongodb.net/educationDB?retryWrites=true&w=majority' })
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://username:password@cluster0.o1smq.mongodb.net/educationDB?retryWrites=true&w=majority' })
   })
 );
 
