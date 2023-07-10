@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { getHomePage, getAboutPage, getCoursesPage, getContactPage, getDashboardPage, getLoginPage, getRegisterPage } = require("../controllers/pageController");
-const {getAccessToRoute, alredyRegistered} = require("../middlewares/authMiddlware");
+const {getAccessToRoute, alredyRegistered} = require("../middlewares/authMiddleware");
 
 router.get("/", getHomePage);
 router.get("/about", getAboutPage);
