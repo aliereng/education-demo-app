@@ -30,11 +30,11 @@ const getCoursesPage = asyncHandler(async(req, res) => {
     if(req.query.category){
         
         selectedCategory = await Category.findOne({slug:req.query.category})
-        courses = await Course.find({category:selectedCategory._id});
+        courses = await Course.find({category:selectedCategory._id}).populate({path:'createdBy', select:"name"});
     
     }else{
         
-        courses = await Course.find();
+        courses = await Course.find().populate({path:'createdBy', select:"name"});
     
     }
 
@@ -46,7 +46,7 @@ const getCoursesPage = asyncHandler(async(req, res) => {
 
 })
 const getCourseSinglePage = asyncHandler(async(req,res)=> {
-    const course = await Course.findById(req.params.id)
+    const course = await Course.findById(req.params.id).populate({path:'createdBy', select:'name'})
     const categories = await Category.find();
 
     res.status(200).render('course',{
@@ -64,10 +64,19 @@ const getContactPage = (req, res) => {
 
 }
 const getDashboardPage = asyncHandler (async (req, res) => {
-    const user = await User.findById(req.session.userID)
+    let courses;
+    const user = await User.findById(req.session.userID).populate("courses")
+    if(user.role === "student"){
+        courses = user.courses
+    }else{
+        courses = await Course.find({createdBy: req.session.userID});
+    }
+    const categories = await Category.find();
     res.status(200).render('dashboard', {
         page_name: 'dashboard',
-        user
+        user,
+        categories,
+        courses
     });
 
 })

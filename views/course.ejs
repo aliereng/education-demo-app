@@ -26,8 +26,17 @@
           </div>
           <div class="post-content">
             <div class="post-date">
-              <span class="day">30</span>
-              <span class="month">Nov</span>
+              <% if(userRole === "student") {%>
+                <form action="/courses/enroll" method="post">
+                  <input type="hidden" name="course_id" value="<%= course._id%>">
+                  <button
+                  class="btn btn-lg btn-warning rounded-0 text-white"
+                  type="submit"
+                >
+                  <span>Enroll Course</span>
+                </button>
+                </form>
+              <%}%>
             </div>
             <div class="meta-info-blog">
               <span
@@ -48,7 +57,9 @@
 
         <div class="blog-author">
           <div class="author-bio">
-            <h3 class="author_name"><a href="#">Tom Jobs</a></h3>
+            <h3 class="author_name">
+              <a href="#"><%= course.createdBy.name%></a>
+            </h3>
             <h5>CEO at <a href="#">SmartEDU</a></h5>
             <p class="author_det">
               Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod
@@ -96,7 +107,11 @@
           <ul>
             <li><a href="/courses">Tüm Kurslar</a></li>
             <% for(let i=0; i < categories.length; i++){%>
-              <li><a href="/courses?category=<%= categories[i].slug%>"><%= categories[i].name %></a></li>
+            <li>
+              <a href="/courses?category=<%= categories[i].slug%>"
+                ><%= categories[i].name %></a
+              >
+            </li>
             <%}%>
           </ul>
         </div>

@@ -19,8 +19,13 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     require: [true, 'kullanıcı şifre alanı boş bırakılamaz.'],
-  }
-
+  },
+  courses:[
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Course'
+    }
+  ]
 });
 
 UserSchema.pre('save', function (next) {

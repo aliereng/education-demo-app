@@ -20,6 +20,10 @@ const CourseSchema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.ObjectId,
     ref: "Category"
+  },
+  createdBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User"
   }
 });
 
@@ -34,4 +38,5 @@ CourseSchema.pre('save', function (next) {
   });
   next();
 });
+
 module.exports = mongoose.model('Course', CourseSchema);

@@ -38,6 +38,7 @@ app.use((req, res, next) => {
 //ROUTE
 app.use("*", (req,res,next)=> {
   userIN = req.session.userID;
+  userRole = req.session.role;
   next();
 })
 app.use(router);

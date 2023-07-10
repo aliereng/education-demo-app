@@ -1,15 +1,15 @@
 const getAccessToRoute = (req, res, next) => {
-    if (userIN) {
+    if (req.session.userID) {
         next();
     } else {
-        res.redirect('login');
+        res.redirect('/login');
     }
 
 }
 
 const alredyRegistered = (req, res, next) => {
     if (userIN) {
-        res.redirect("dashboard");
+        res.redirect("/dashboard");
     } else {
         next()
     }
@@ -17,7 +17,7 @@ const alredyRegistered = (req, res, next) => {
 
 const checkRole = (roles) => {
     return (req, res, next) => {
-        if (roles.inclues(req.session.role)) {
+        if (roles.includes(req.session.role)) {
             next();
         } else {
             res.status(400).json({ success: false, message: "yetkiniz yok" });
