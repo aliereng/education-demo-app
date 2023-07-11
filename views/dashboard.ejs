@@ -1,6 +1,8 @@
 <%- include('partials/_head')%>
   <!-- END LOADER -->
-
+  <% if(flashMessages){%>
+    <%- include('partials/_flashMessages') %>
+<%}%>
   <!-- Start header -->
   <%- include('partials/_navigation')%>
     <!-- End header -->

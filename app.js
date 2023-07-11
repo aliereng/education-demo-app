@@ -2,6 +2,8 @@ const express = require('express');
 const moment = require('moment');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
+
 
 const router = require('./router/index');
 const { connectDatabase } = require('./helpers/databaseHelper');
@@ -13,6 +15,8 @@ global.userIN = null;
 dotenv.config({
   path:"./config/env/config.env"
 });
+
+
 // HELPER
 connectDatabase();
 
@@ -32,8 +36,10 @@ app.use(
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(flash());
 app.use((req, res, next) => {
   res.locals.moment = moment;
+  res.locals.flashMessages = req.flash();
   next();
 });
 

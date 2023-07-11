@@ -19,6 +19,7 @@ const createNewCourse = asyncHandler(async (req, res) => {
     ...req.body
   });
   
+  req.flash("success",`${req.body.name} kursu başarı ile eklendi.`)
   res.status(201).redirect('dashboard');
 });
 const enrollCourse = asyncHandler(async(req,res)=> {

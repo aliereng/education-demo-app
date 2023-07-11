@@ -1,0 +1,16 @@
+<% if(flashMessages.success){%>
+    <div id="flashMessageContainer" class="alert alert-success">
+        <%=flashMessages.success %>
+    </div>
+<%}else if(flashMessages.error){%>
+    <div id="flashMessageContainer" class="alert alert-danger">
+        <%=flashMessages.error %>
+    </div>
+<%}%>
+
+
+<script>
+    setTimeout(() => {
+        document.getElementById("flashMessageContainer").style.display = "none";
+    }, 5000);
+</script>
