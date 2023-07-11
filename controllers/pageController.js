@@ -21,21 +21,30 @@ const getAboutPage = (req, res) => {
 
 }
 
-const getCoursesPage = asyncHandler(async(req, res) => {
-    
-    let selectedCategory; 
+const getCoursesPage = asyncHandler(async (req, res) => {
+
+    let selectedCategory;
     let courses;
     const categories = await Category.find();
-    
-    if(req.query.category){
-        
-        selectedCategory = await Category.findOne({slug:req.query.category})
-        courses = await Course.find({category:selectedCategory._id}).populate({path:'createdBy', select:"name"});
-    
-    }else{
-        
-        courses = await Course.find().populate({path:'createdBy', select:"name"});
-    
+
+    if (req.query.category) {
+
+        selectedCategory = await Category.findOne({ slug: req.query.category })
+        courses = await Course.find(
+            { "category": selectedCategory._id }
+
+        ).populate({ path: 'createdBy', select: "name" });
+
+    } else if (req.query.search) {
+        courses = await Course.find({
+            "name": { $regex: '.*' + req.query.search + '.*', $options: 'i' }
+
+        }).populate({ path: 'createdBy', select: "name" });
+    }
+    else {
+
+        courses = await Course.find().populate({ path: 'createdBy', select: "name" });
+
     }
 
     res.render('courses', {
@@ -45,11 +54,11 @@ const getCoursesPage = asyncHandler(async(req, res) => {
     });
 
 })
-const getCourseSinglePage = asyncHandler(async(req,res)=> {
-    const course = await Course.findById(req.params.id).populate({path:'createdBy', select:'name'})
+const getCourseSinglePage = asyncHandler(async (req, res) => {
+    const course = await Course.findById(req.params.id).populate({ path: 'createdBy', select: 'name' })
     const categories = await Category.find();
 
-    res.status(200).render('course',{
+    res.status(200).render('course', {
         course,
         categories,
         page_name: 'course'
@@ -63,13 +72,13 @@ const getContactPage = (req, res) => {
     });
 
 }
-const getDashboardPage = asyncHandler (async (req, res) => {
+const getDashboardPage = asyncHandler(async (req, res) => {
     let courses;
     const user = await User.findById(req.session.userID).populate("courses")
-    if(user.role === "student"){
+    if (user.role === "student") {
         courses = user.courses
-    }else{
-        courses = await Course.find({createdBy: req.session.userID});
+    } else {
+        courses = await Course.find({ createdBy: req.session.userID });
     }
     const categories = await Category.find();
     res.status(200).render('dashboard', {
@@ -82,15 +91,15 @@ const getDashboardPage = asyncHandler (async (req, res) => {
 })
 const getLoginPage = (req, res) => {
 
-    res.status(200).render('login',{
-        page_name:"login"
+    res.status(200).render('login', {
+        page_name: "login"
     });
 
 }
 const getRegisterPage = (req, res) => {
 
     res.status(200).render('register', {
-        page_name:"register"
+        page_name: "register"
     });
 
 }

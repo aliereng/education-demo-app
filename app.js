@@ -6,10 +6,13 @@ const MongoStore = require('connect-mongo');
 const router = require('./router/index');
 const { connectDatabase } = require('./helpers/databaseHelper');
 const errorHandler = require('./middlewares/ErrorHandler');
-
+const dotenv = require("dotenv")
 const app = express();
 const port = 3000;
 global.userIN = null;
+dotenv.config({
+  path:"./config/env/config.env"
+});
 // HELPER
 connectDatabase();
 
@@ -22,7 +25,7 @@ app.use(
     secret: 'alierengonulcelen',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://username:password@cluster0.o1smq.mongodb.net/educationDB?retryWrites=true&w=majority' })
+    store: MongoStore.create({ mongoUrl: process.env.MongoDB_URL })
   })
 );
 

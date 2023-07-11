@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 const Course = require('../models/Course');
 const User = require('../models/User');
+const Category = require('../models/Category');
 
 // const getAllCourse = asyncHandler(async (req, res) => {
 //   const courses = await Course.find();
@@ -33,6 +34,9 @@ const releaseCourse = asyncHandler(async(req,res)=> {
   await user.save();
   res.status(200).redirect("/dashboard");
 })
+
+
+
 
 module.exports = {
   createNewCourse,

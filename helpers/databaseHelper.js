@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDatabase = async () => {
 
-    await mongoose.connect("mongodb+srv://username:password@cluster0.o1smq.mongodb.net/educationDB?retryWrites=true&w=majority")
+    await mongoose.connect(process.env.MongoDB_URL)
         .then(() => {
             console.log("veritabanı bağlantısı başarılı")
         })
