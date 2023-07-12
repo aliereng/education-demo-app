@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'kullanıcı email alanı boş bırakılamaz.'],
     trim: true,
+    unique: true
   },
   role: {
     type: String,

@@ -1,5 +1,7 @@
 <%- include('partials/_head')%>
-	
+<% if(flashMessages){%>
+    <%- include('partials/_flashMessages') %>
+<%}%>
 	<!-- Start header -->
 	<%- include('partials/_navigation')%>
 	<!-- End header -->

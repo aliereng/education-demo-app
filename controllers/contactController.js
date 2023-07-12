@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-
+const CustomError = require('../helpers/errorHelper');
 const sendEmail = require("../helpers/nodemailerHelper");
 
 const send = asyncHandler(async(req, res, next)=> {
@@ -14,9 +14,9 @@ const send = asyncHandler(async(req, res, next)=> {
         req.flash("success", "your mail has been sent successfully")
         res.redirect('/contact');
     }).catch(()=> {
-        req.flash("error", "your mail was not sent successfully")
-        res.redirect('/contact');
-
+        // req.flash("error", "your mail was not sent successfully")
+        // res.redirect('/contact');
+        return next(new CustomError("email başarısız", 400))
     })
 
 });

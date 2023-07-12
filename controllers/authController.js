@@ -1,11 +1,11 @@
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
+
 const User = require('../models/User');
 const CustomError = require('../helpers/errorHelper');
 
 const createNewUser = asyncHandler(async (req, res) => {
-  await User.create(req.body);
-
+  await User.create(req.body)
   res.status(201).redirect("/login")
 });
 
