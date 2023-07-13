@@ -5,7 +5,7 @@ const randomString = require("randomstring")
 const User = require("../models/User")
 const Category = require("../models/Category")
 const Course = require("../models/Course")
-const url = "mongodb+srv://aeggea:ali392630EREN@cluster0.o1smq.mongodb.net/educationDB?retryWrites=true&w=majority";
+const url = "mongodb+srv://username:password@cluster0.o1smq.mongodb.net/educationDB?retryWrites=true&w=majority";
 const connectDb = async()=> {
     await mongoose.connect(url)
     .then(() => {
