@@ -26,7 +26,7 @@ const getCoursesPage = asyncHandler(async (req, res) => {
     let selectedCategory;
     let courses;
     const categories = await Category.find();
-
+    
     if (req.query.category) {
 
         selectedCategory = await Category.findOne({ slug: req.query.category })
@@ -74,6 +74,7 @@ const getContactPage = (req, res) => {
 }
 const getDashboardPage = asyncHandler(async (req, res) => {
     let courses;
+    const users = await User.find();
     const user = await User.findById(req.session.userID).populate("courses")
     if (user.role === "student") {
         courses = user.courses
@@ -85,7 +86,8 @@ const getDashboardPage = asyncHandler(async (req, res) => {
         page_name: 'dashboard',
         user,
         categories,
-        courses
+        courses,
+        users
     });
 
 })

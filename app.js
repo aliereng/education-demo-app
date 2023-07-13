@@ -3,7 +3,7 @@ const moment = require('moment');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-
+var methodOverride = require('method-override')
 
 const router = require('./router/index');
 const { connectDatabase } = require('./helpers/databaseHelper');
@@ -42,6 +42,9 @@ app.use((req, res, next) => {
   res.locals.flashMessages = req.flash();
   next();
 });
+app.use(methodOverride('_method', {
+  methods: ['POST', 'GET']
+}));
 
 
 //ROUTE

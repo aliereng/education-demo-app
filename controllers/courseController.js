@@ -36,11 +36,23 @@ const releaseCourse = asyncHandler(async(req,res)=> {
   res.status(200).redirect("/dashboard");
 })
 
+const deleteCourse = asyncHandler(async (req, res, next)=>{
+  await Course.findByIdAndDelete(req.params.id);
+  res.status(200).redirect('/dashboard');
+})
 
+const updateCourse = asyncHandler(async(req, res, next)=> {
+  await Course.findByIdAndUpdate(req.body.id,{
+    ...req.body
+  },{new:true, runValidators:true})
+  res.status(200).redirect('/dashboard');
+})
 
 
 module.exports = {
   createNewCourse,
   enrollCourse,
-  releaseCourse
+  releaseCourse,
+  deleteCourse,
+  updateCourse
 };

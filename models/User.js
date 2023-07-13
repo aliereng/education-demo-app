@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const Course = require("./Course")
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -36,4 +36,6 @@ UserSchema.pre('save', function (next) {
     next();
   })
 });
+
+
 module.exports = mongoose.model('User', UserSchema);
