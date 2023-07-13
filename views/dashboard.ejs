@@ -243,9 +243,17 @@
         <h1><%= user.name %><span class="m_1">ADMIN</span></h1>
       </div>
     </div>
-
+    
     <div id="overviews" class="section wb">
       <div class="container">
+        <button
+            class="btn btn-lg btn-warning rounded-0 text-white"
+            href="#"
+            data-toggle="modal"
+            data-target="#addCategory"
+          >
+            <span>Create New Category</span>
+          </button>
         <div class="row">
           <div class="col-lg-12 blog-post-single">
             <table class="table">
@@ -365,6 +373,62 @@
       </div>
     </div>
   </div>
+
+    <!-- ADD Category -->
+    <div
+    class="modal fade"
+    id="addCategory"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModelLabel"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body customer-box">
+          <div class="tab-content">
+            <div class="tab-pane active" id="Login">
+              <form
+                role="form"
+                class="form-horizontal"
+                action="/categories"
+                method="post"
+              >
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      placeholder="Category Name"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <button
+                      type="submit"
+                      class="btn btn-light btn-radius btn-brd grd1"
+                    >
+                      Submit
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-light btn-radius btn-brd grd1"
+                      data-dismiss="modal"
+                      aria-hidden="true"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% } %> 
+
 
 <%- include('partials/_footer')%>

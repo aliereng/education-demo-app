@@ -10,7 +10,7 @@ const createNewUser = asyncHandler(async (req, res) => {
 
 const deleteUser = asyncHandler(async (req, res) => {
     await User.findByIdAndDelete(req.query.id)
-    
+    await Course.deleteMany({createdBy:req.query.id});
     res.status(201).redirect("/dashboard")
   });
 
